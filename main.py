@@ -2,13 +2,8 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas
-
-
-excel_data_df = pandas.read_excel('wine.xlsx')
-titles = excel_data_df['Название'].tolist()
-varietys = excel_data_df['Сорт'].tolist()
-prices = excel_data_df['Цена'].tolist()
-images = excel_data_df['Картинка'].tolist()
+import pprint
+import collections
 
 
 env = Environment(
@@ -18,24 +13,18 @@ env = Environment(
 
 template = env.get_template('template.html')
 
+products = pandas.read_excel('wine2.xlsx', keep_default_na=False).to_dict(orient='records')
+
+products_by_categories = collections.defaultdict(list)
+for product in products:
+    products_by_categories[product['Категория']].append(product)
+
 
 def count_age():
     today = datetime.datetime.now()
     test = today.year
     delta = test - 1920
     return delta
-
-
-wines = []
-
-for title in titles:
-    wines.append({
-        "title": f"{}",
-        "variety": f"{}",
-        "price": f"{}",
-        "image": f"{}"
-    }
-)
 
 
 def spell_check():
@@ -50,7 +39,7 @@ def spell_check():
 
 rendered_pages = template.render(
     age=f"Уже {count_age()} {spell_check()} с вами",
-    wines=wines
+    products_by_categories=products_by_categories
 )
 
 with open('index.html', 'w', encoding="utf8") as file:

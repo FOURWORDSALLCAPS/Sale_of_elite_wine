@@ -1025,7 +1025,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 			"ui-slider-handle": "ui-corner-all",
 
 			// Note: ui-widget-header isn't the most fittingly semantic framework class for this
-			// element, but worked best visually with a variety of themes
+			// element, but worked best visually with a category of themes
 			"ui-slider-range": "ui-corner-all ui-widget-header"
 		},
 		distance: 0,

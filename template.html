@@ -80,7 +80,7 @@
     
     </div>
 
-    
+
     <div class="owl-carousel hero-slide owl-style">
       <div class="intro-section container" style="background-image: url('assets/hero_1.jpg');">
         <div class="row justify-content-center text-center align-items-center">
@@ -114,15 +114,18 @@
           </div>
         </div>
         <div class="row">
-          {% for wine in wines %}
+          {% for product_by_categorie in products_by_categories %}
+          <div class="col-12 section-title text-center mb-5">
+            <h2 class="d-block">{{product_by_categorie.Категория}}</h2>
+          </div>
             <div class="col-lg-4 mb-5 col-md-6">
               <div class="wine_v_1 text-center pb-4 pt-5">
-                <img src="{{wine.image}}" alt="Image" class="img-fluid">
+                <img src="images/{{product_by_categorie.Картинка}}" alt="Image" class="img-fluid">
                 <div>
-                  <h3 class="heading mt-3 mb-3 text-dark">{{wine.title}}</h3>
+                  <h3 class="heading mt-3 mb-3 text-dark">{{product_by_categorie.Название}}</h3>
                   <p>
-                    {{wine.variety}}<br/>
-                    <span class="price">{{wine.price}}</span>
+                    {{product_by_categorie.Сорт}}<br/>
+                    <span class="price">{{product_by_categorie.Цена}}</span>
                   </p>
                 </div>
               </div>
