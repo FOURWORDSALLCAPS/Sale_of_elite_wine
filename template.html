@@ -114,22 +114,24 @@
           </div>
         </div>
         <div class="row">
-          {% for product_by_categorie in products_by_categories %}
-          <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{product_by_categorie.Категория}}</h2>
-          </div>
-            <div class="col-lg-4 mb-5 col-md-6">
-              <div class="wine_v_1 text-center pb-4 pt-5">
-                <img src="images/{{product_by_categorie.Картинка}}" alt="Image" class="img-fluid">
-                <div>
-                  <h3 class="heading mt-3 mb-3 text-dark">{{product_by_categorie.Название}}</h3>
-                  <p>
-                    {{product_by_categorie.Сорт}}<br/>
-                    <span class="price">{{product_by_categorie.Цена}}</span>
-                  </p>
+          {% for p in products_by_categories: %}
+            {% for test in products_by_categories['{{p}}']: %}
+            <div class="col-12 section-title text-center mb-5">
+              <h2 class="d-block">{{test['Категория']}}</h2>
+            </div>
+              <div class="col-lg-4 mb-5 col-md-6">
+                <div class="wine_v_1 text-center pb-4 pt-5">
+                  <img src="images/{{test['Картинка']}}" alt="Image" class="img-fluid">
+                  <div>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{test['Название']}}</h3>
+                    <p>
+                      {{test['Сорт']}}<br/>
+                      <span class="price">{{test['Цена']}}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            {% endfor %}
           {% endfor %}
         </div>
       </div>
