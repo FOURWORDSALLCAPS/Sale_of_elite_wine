@@ -2,7 +2,6 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas
-import pprint
 import collections
 
 
@@ -13,7 +12,7 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-products = pandas.read_excel('wine2.xlsx', keep_default_na=False).to_dict(orient='records')
+products = pandas.read_excel('wine3.xlsx', keep_default_na=False).to_dict(orient='records')
 
 products_by_categories = collections.defaultdict(list)
 for product in products:
