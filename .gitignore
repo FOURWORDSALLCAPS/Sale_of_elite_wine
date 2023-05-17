@@ -24,3 +24,5 @@ TestResults.xml
 *.env
 #idea files
 *.idea
+#index.html file
+index.html

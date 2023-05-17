@@ -15,14 +15,18 @@ template = env.get_template('template.html')
 products = pandas.read_excel('wine3.xlsx', keep_default_na=False).to_dict(orient='records')
 
 products_by_categories = collections.defaultdict(list)
-for product in products:
-    products_by_categories[product['Категория']].append(product)
 
+
+def popa(products_by_categories):
+    for product in products:
+        products_by_categories[product['Категория']].append(product)
+    return 
 
 def count_age():
     today = datetime.datetime.now()
-    test = today.year
-    delta = test - 1920
+    year_now = today.year
+    year_of_foundation = 1920
+    delta = year_now - year_of_foundation
     return delta
 
 
