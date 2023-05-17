@@ -1,6 +1,6 @@
 # jinja2
-jinja2
+jinja2==3.1.2
 # pandas
-pandas
+pandas==2.0.1
 # openpyxl
-openpyxl
+openpyxl==3.1.2
