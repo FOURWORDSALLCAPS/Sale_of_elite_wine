@@ -48,7 +48,7 @@ def main():
     age = count_age()
 
     rendered_pages = template.render(
-        age=f"Уже {count_age()} {get_year(age)} с вами",
+        age=f"Уже {age} {get_year(age)} с вами",
         products_by_categories=products_by_categories
     )
 
