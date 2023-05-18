@@ -114,47 +114,45 @@
           </div>
         </div>
         <div class="row">
-          {% for wines, Категория in products_by_categories.items() : %}
+          {% for wines, categorys in products_by_categories.items() : %}
             <div class="col-12 section-title text-center mb-5">
               <h2 class="d-block">{{wines}}</h2>
             </div>
-            {% if wines['Сорт'] %}
-              {% for wine in Категория : %}
+            {% for category in categorys : %}
+              {% if wines['Сорт'] %}
                 <div class="col-lg-4 mb-5 col-md-6">
                   <div class="wine_v_1 text-center pb-4 pt-5">
-                      <img src="images/{{wine['Картинка']}}" alt="Image" class="img-fluid">
-                    {% if wine['Акция'] %}
+                      <img src="images/{{category['Картинка']}}" alt="Image" class="img-fluid">
+                    {% if category['Акция'] %}
                       <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                     {% endif %}
                     <div>
-                      <h3 class="heading mt-3 mb-3 text-dark">{{wine['Название']}}</h3>
+                      <h3 class="heading mt-3 mb-3 text-dark">{{category['Название']}}</h3>
                       <p>
-
-                        <span class="price">{{wine['Цена']}}</span>
+                        <span class="price">{{category['Цена']}}</span>
                       </p>
                     </div>
                   </div>
                 </div>
-              {% endfor %}
-            {% else %}
-              {% for wine in Категория : %}
+              {% endif %}
+            {% endfor %}
+            {% for category in categorys : %}
                 <div class="col-lg-4 mb-5 col-md-6">
                   <div class="wine_v_1 text-center pb-4 pt-5">
-                      <img src="images/{{wine['Картинка']}}" alt="Image" class="img-fluid">
-                    {% if wine['Акция'] %}
+                      <img src="images/{{category['Картинка']}}" alt="Image" class="img-fluid">
+                    {% if category['Акция'] %}
                       <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                     {% endif %}
                     <div>
-                      {{wine['Сорт']}}<br/>
-                      <h3 class="heading mt-3 mb-3 text-dark">{{wine['Название']}}</h3>
+                      {{category['Сорт']}}<br/>
+                      <h3 class="heading mt-3 mb-3 text-dark">{{category['Название']}}</h3>
                       <p>
-                        <span class="price">{{wine['Цена']}}</span>
+                        <span class="price">{{category['Цена']}}</span>
                       </p>
                     </div>
                   </div>
                 </div>
-              {% endfor %}
-            {% endif %}
+            {% endfor %}
           {% endfor %}
         </div>
       </div>

@@ -9,18 +9,17 @@ import argparse
 def count_age():
     today = datetime.datetime.now()
     year_now = today.year
-    year_of_foundation = 1920
-    delta = year_now - year_of_foundation
-    return delta
+    foundation_year = 1918
+    age = year_now - foundation_year
+    return age
 
 
-def get_year():
-    calculated_year = count_age()
+def get_year(age):
     year = 'лет'
-    if (calculated_year // 10) % 10 != 1:
-        if calculated_year % 10 == 1:
+    if (age // 10) % 10 != 1:
+        if age % 10 == 1:
             year = 'год'
-        elif calculated_year % 10 in (2, 3, 4):
+        elif age % 10 in (2, 3, 4):
             year = 'года'
     return year
 
@@ -33,13 +32,13 @@ def main():
 
     template = env.get_template('template.html')
 
-    parser = argparse.ArgumentParser(
+    arguments = argparse.ArgumentParser(
         description='Сайт магазина авторского вина "Новое русское вино"'
     )
-    parser.add_argument('-d', default='default.xlsx', help='Введите название вашего .xlsx файла')
-    parser = parser.parse_args()
+    arguments.add_argument('-d', default='default.xlsx', help='Введите название вашего .xlsx файла')
+    arguments = arguments.parse_args()
 
-    products = pandas.read_excel(f'{parser.d}', keep_default_na=False).to_dict(orient='records')
+    products = pandas.read_excel(f'{arguments.d}', keep_default_na=False).to_dict(orient='records')
 
     products_by_categories = collections.defaultdict(list)
 
@@ -47,7 +46,7 @@ def main():
         products_by_categories[product['Категория']].append(product)
 
     rendered_pages = template.render(
-        age=f"Уже {count_age()} {get_year()} с вами",
+        age=f"Уже {count_age()} {get_year(age)} с вами",
         products_by_categories=products_by_categories
     )
 
