@@ -9,7 +9,7 @@ import argparse
 def count_age():
     today = datetime.datetime.now()
     year_now = today.year
-    foundation_year = 1918
+    foundation_year = 1920
     age = year_now - foundation_year
     return age
 
@@ -44,6 +44,8 @@ def main():
 
     for product in products:
         products_by_categories[product['Категория']].append(product)
+
+    age = count_age()
 
     rendered_pages = template.render(
         age=f"Уже {count_age()} {get_year(age)} с вами",
